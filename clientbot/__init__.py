@@ -15,4 +15,4 @@ import os
 
 port = int(os.environ.get("PORT", 9874))
 
-app.run(host='localhost', port=9874, debug=True)
+app.run(host='localhost', port=port, debug=True)
