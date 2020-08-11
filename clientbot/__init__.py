@@ -15,4 +15,4 @@ import os
 
 port = int(os.environ.get("PORT", 9874))
 
-app.run(host='classroomplus.herokuapp.com', port=port, debug=True)
+app.run(port=port, debug=True)
