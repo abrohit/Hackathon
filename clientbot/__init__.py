@@ -11,5 +11,8 @@ from flask import Flask
 app = Flask(__name__)
 
 import clientbot.routes
+import os
 
-app.run(host='localhost', port=33507, debug=True)
+port = int(os.environ.get("PORT", 9874))
+
+app.run(host='localhost', port=9874, debug=True)
