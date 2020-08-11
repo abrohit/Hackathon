@@ -1,0 +1,7 @@
+MONGO_USR=dbUser
+MONGO_PASS=hackillinois2020
+MONGO_DB=test
+JWT_SECRET=pssthackathonpsst
+Django_SecretKey=2+m!$02v^nxolrywjx1t02vl&w-4#ay-1m0y$3*%@maiqqpggp
+Django_USR = Hackathon
+Django_PASS = Hackme123

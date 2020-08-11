@@ -11,14 +11,20 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
+
+# load .env into os.getenv function
+loaded = load_dotenv(find_dotenv())
+
+if not loaded:
+    raise Exception(".env error")
 
 
 # Quick-start development settings - unsuitable for production
