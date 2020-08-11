@@ -1,1 +1,1 @@
-web: gunicorn ClassRoom_Plus_Website.ClassRoom_Plus.wsgi:app --log-file -
+web: gunicorn test --log-file -
