@@ -12,4 +12,4 @@ app = Flask(__name__)
 
 import clientbot.routes
 
-app.run(host='localhost', port=9874, debug=True)
+app.run(host='localhost', port=33507, debug=True)
