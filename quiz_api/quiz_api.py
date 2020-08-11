@@ -154,5 +154,5 @@ api.add_resource(FRQSession, "/frq/<string:sessionId>")
 
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = False)
 

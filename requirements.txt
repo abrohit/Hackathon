@@ -13,3 +13,6 @@ dnspython
 beautifulsoup4
 google
 six
+gunicorn~=20.0.4
+
+whitenoise~=5.0.1
