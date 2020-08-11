@@ -36,8 +36,8 @@ def signupuser(request):
                 return(render(request, 'home/success.html'))
             except IntegrityError:
                 return(render(request, 'home/signup.html', {'form':SignupForm(), 'error':'That Username has already been taken. Please choose another Username.'}))
-            except ValueError:
-                return(render(request, 'home/signup.html', {'form':SignupForm(), 'error':'Please enter your details correctly.'}))
+            except ValueError as e:
+                return(render(request, 'home/signup.html', {'form':SignupForm(), 'error':f'Please enter your details correctly. {e}'}))
         else:
             return(render(request, 'home/signup.html', {'form':SignupForm(), 'error':'Passwords did not match'}))
     else:
