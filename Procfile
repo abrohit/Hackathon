@@ -1,1 +1,1 @@
-web: gunicorn test:app
+web: gunicorn clientbot:flaskapp --log-file=-
