@@ -10,3 +10,5 @@ djangorestframework==3.11.1
 beautifulsoup4
 google
 six
+gunicorn
+whitenoise
