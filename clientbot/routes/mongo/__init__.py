@@ -442,7 +442,7 @@ def resolve():
     return json.dumps({"success": 1, "response": "Deleted doubt."})
 
 
-@app.route('/doubt/comment', method=['POST'])
+@app.route('/doubt/comment', methods=['POST'])
 def comment():
     """ requires auth token. comments on the post with a possible solution (with marker for role: student/teacher) """
     current_user = current()
