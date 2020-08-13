@@ -180,18 +180,20 @@ def new_session():
 
 @app.route('/sessions/get')
 def get_session():
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -211,18 +213,21 @@ def get_session():
 @app.route('/sessions/enter')
 def enter_session():
     """ requires auth token. """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -245,18 +250,21 @@ def enter_session():
 @app.route('/sessions/leave')
 def leave_session():
     """ requires auth token. """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -279,18 +287,21 @@ def leave_session():
 @app.route('/sessions/delete')
 def delete_session():
     """ requires auth token. """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -307,18 +318,21 @@ def delete_session():
 def doubt_new():
     """ requires auth token """
 
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -354,18 +368,21 @@ def doubt_new():
 @app.route('/doubt/vote')
 def doubt_vote():
     """ requires auth token. for displaying on screen all available doubts """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -412,18 +429,21 @@ def doubt_vote():
 @app.route('/doubt/resolve')
 def resolve():
     """ requires auth token. should only work if called by the user who placed it (or potentially teacher) """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -447,18 +467,21 @@ def resolve():
 @app.route('/doubt/comment', methods=['POST'])
 def comment():
     """ requires auth token. comments on the post with a possible solution (with marker for role: student/teacher) """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
@@ -489,18 +512,21 @@ def comment():
 @app.route('/doubt/comment/remove')
 def remove_comment():
     """ requires auth token. comments on the post with a possible solution (with marker for role: student/teacher) """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
-    content = request.json
+    # content = request.json
     session_id = content["session_id"]
     session = session_db.find_one({"session_id": session_id})
     if session is None:
