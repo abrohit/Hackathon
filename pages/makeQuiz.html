@@ -102,11 +102,12 @@ select{
 <br>
 <br>
 <div class="block">
-  <label>Question Number: &nbsp; </label>  <input type="text" class ="input-box" placeholder="Question Number Ex: 1" id="num" name="pword" size="44"/>
-  <label>   &nbsp;&nbsp;&nbsp;&nbsp; Multiple Choice or Open Ended: &nbsp; </label>    <select name="mcq" id="mcq" style="width: 280px;">
+  <label>Question Number: &nbsp; </label>  <input type="text" class ="input-box" placeholder="Question Number Ex: 1" id="num" name="pword" size="22"/>
+  <label>   &nbsp;&nbsp;&nbsp;&nbsp; Multiple Choice or Open Ended: &nbsp; </label>    <select name="mcq"id="mcq"  style = "width: 22" >
     <option value="mc">Multiple Choice</option>
     <option value="frq">Free Response</option>
   </select>
+  <label>Username: &nbsp; </label>  <input type="text" class ="input-box" placeholder="Username" id="num" name="pword" size="22"/>
 </div>
 
 <br>
@@ -123,7 +124,7 @@ select{
 <br>
 
 <div class="block">
-  <label>Type Correct Answer (type N/A for opend ended):  &nbsp; </label>  
+  <label>Type Correct Answer (type N/A for frq):  &nbsp; </label>  
 
   <input type="text" class ="input-box" id="correctAnswer"  placeholder="Correct Answer" name="pword" size= "44" />
 </div>
@@ -132,7 +133,7 @@ select{
 <br>
 
 <div class="block">
-  <label> Type Three Wrong Answers Here Seperated by a Double Space (type N/A for opend ended): &nbsp; </label>  
+  <label> Type Three Wrong Answers Here Seperated by a Double Space (type N/A for frq): &nbsp; </label>  
   
   <input type="text" class ="input-box" id="wrongAnswer" placeholder="Wrong Answer E.g. WrongAnswer1 WrongAnswer2 WrongAnswer3 " name="pword" size= "44" />
 </div>
@@ -147,7 +148,7 @@ select{
  <button type="button" onclick="myFunction()"> Next Question </button> 
 
   
-<script src="quiz.js"></script>
-
+<script  defer src="quiz.js"></script>
+<script  defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </body>
 </html>
