@@ -1,7 +1,10 @@
 class User(object):
     def __init__(self, **kwargs):
         # TODO: prevent bad usernames or passwords (too small, etc)
-        self.username = kwargs["username"]
+        if "username" in kwargs:
+            self.username = kwargs["username"]
+        if "user_name" in kwargs:
+            self.username = kwargs["user_name"]
         if "password" in kwargs:
             self.password = kwargs["password"]
         self.role = "student"
