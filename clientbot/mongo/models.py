@@ -11,6 +11,9 @@ class User(object):
         if "id" in kwargs:
             # automatically created by mongo
             self.id = str(kwargs["id"])
+        if "user_id" in kwargs:
+            # automatically created by mongo
+            self.id = str(kwargs["user_id"])
         if "role" in kwargs:
             self.role = kwargs["role"]
 

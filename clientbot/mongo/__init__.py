@@ -143,14 +143,17 @@ def sessions():
 @app.route('/sessions/new', methods=['POST'])
 def new_session():
     """ requires auth token. """
-    current_user = current()
-    if isinstance(current_user, tuple):
-        current_user = current_user[0]  # ignore error type
-    if isinstance(current_user, str):
-        current_user = json.loads(current_user)  # load up
-    if current_user["success"] == 0:
-        return current()
-    user = User(**(current_user["response"]["user"]))
+    # current_user = current()
+    # if isinstance(current_user, tuple):
+    #     current_user = current_user[0]  # ignore error type
+    # if isinstance(current_user, str):
+    #     current_user = json.loads(current_user)  # load up
+    # if current_user["success"] == 0:
+    #     return current()
+    # user = User(**(current_user["response"]["user"]))
+
+    content = request.json
+    user = User(**content)
 
     session_db = mongo.db.sessions
 
@@ -159,7 +162,6 @@ def new_session():
         # very very unlikely to wind up here but just to be sure
         new_id = int(random.random() * 1000000000)
 
-    content = request.json
     if content is not None and "session_name" in content:
         session_name = content["session_name"]
     else:
