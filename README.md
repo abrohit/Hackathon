@@ -13,11 +13,32 @@ A simple chatroom to pose questions and upvote, downvote, or comment
 on them.
 
 ### Running Locally
+**ClientBot and Quiz**
 ```angular2
-(venv) % python test.py
+(venv) % python flask_start.py
 ```
 The API is created at `http://localhost:9874`. 
 Query with an app like [Insomnia](https://insomnia.rest/).
+
+**Icebreaker**
+```angular2
+% cd icebreaker
+% go run main.go
+```
+
+### Pushing to Heroku
+**ClientBot and Quiz**
+```angular2
+% git commit
+% git push heroku master
+```
+
+**Icebreaker**
+```angular2
+% cd icebreaker
+% git commit
+% git push heroku master
+```
 
 ### API Endpoints
 * All API Return `{ status: 1, response: ... }` or `{ status: 0, error: ... }`
