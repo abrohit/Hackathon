@@ -10,11 +10,11 @@ import random
 
 
 from .models import User, Session, Doubt
-from clientbot import app
-from clientbot.utilities import jwt_encode, jwt_auth
+from flask_start import app
+from flask_routes.utilities import jwt_encode, jwt_auth
 
 
-print("**Creating Mongo Routes...")
+print("**Creating Mongo Routes... ")
 
 app.config['MONGO_URI'] = f"mongodb+srv://{os.getenv('MONGO_USR')}:{os.getenv('MONGO_PASS')}@cluster0.8uvh8.mongo" \
                           f"db.net/{os.getenv('MONGO_DB')}?retryWrites=true&w=majority"
