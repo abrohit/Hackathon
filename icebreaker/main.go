@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/bmizerany/pat"
 	"go.mongodb.org/mongo-driver/bson"
@@ -32,12 +33,22 @@ func (p *Person) String() {
 	log.Printf("Person Name: %s/nPerson Match: %s", p.Username, p.Match)
 }
 
+func determineListenAddress() (string) {
+    port := os.Getenv("PORT")
+    if port == "" {
+        return ":3000"
+    }
+    return ":" + port
+}
+
 func main() {
 	mux := pat.New()
 	mux.Get("/questions", http.HandlerFunc(questions))
 	mux.Get("/icebreaker", http.HandlerFunc(icebreaker))
 	log.Println("Listening...")
-	err := http.ListenAndServe(":3000", mux)
+	port := determineListenAddress()
+
+	err := http.ListenAndServe(port, mux)
 	if err != nil {
 		log.Fatal(err)
 	}
