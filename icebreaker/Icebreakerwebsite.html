@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Sign Up Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+     
+    body{
+      background-image: url('https://user-images.githubusercontent.com/42160652/89743160-43626100-da6e-11ea-8888-80aae91702a2.jpeg');
+    }
+
+    p{
+      font-family: 'Fredericka the Great', cursive;
+      
+    }
+
+    h1{
+      font-family: 'Fredericka the Great', cursive;
+      color: white;
+      text-align: center;
+      font-size: 100px;
+    }
+    label{
+      font-family: 'Fredericka the Great', cursive;
+      color: white;
+    }
+.accordion {
+		    background-color: #8fb7a5;
+		    color: #FFF;
+		    cursor: pointer;
+		    padding: 18px;
+		    width: 100%;
+		    text-align: left;
+		    border: 1px solid white;
+		    outline: none;
+		    transition: 0.4s;
+		    font: 20px Lato, sans-serif;
+		}
+
+	
+		.active, .accordion:hover {
+		    background-color: #527e6a;
+		}
+
+.panel {
+		    padding: 0 18px;
+		    background-color: white;
+		    max-height: 0;
+		    overflow: hidden;
+		    transition: max-height 0.2s ease-out;
+		}
+.accordion:after {
+		    content: '\02795'; /* Unicode character for "plus" sign (+) */
+		    font-size: 13px;
+		    float: right;
+		    margin-left: 5px;
+		}
+
+		.active:after {
+		    content: "\2796"; /* Unicode character for "minus" sign (-) */
+		}
+
+       
+.picRight{
+  float: left;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.picleft{
+  float: right;
+  margin-right: 50px;
+  margin-top: 50px;
+}
+.container{
+  width: 600px;
+  height: 400px;
+  position: relative;
+  margin: 200px auto;
+
+}
+
+.text{
+   color: white;
+  font-size: 30px;
+  position:relative;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%,-50%);
+  text-shadow: 0 0 10px black;
+}
+
+.questionssss{
+color:black;
+font-family: 'Fredericka the Great', cursive;
+}    
+    </style>
+  </head>
+  
+  <body>
+    <h1> Ice Breaker Room </h1>
+    <script src="script.js"></script>
+  
+   <button class="accordion">Ice Breaker Questions</button>
+	<div class="panel">
+	<p>
+<ul class="questionssss">
+<li>Question 1: What's your favorite color?</li>
+<li>Question 2: What's your favorite movie?</li>
+<li>Question 3: What came first: the chicken or the egg?</li>
+<li>Question 4: If you could travel anywhere would would you go?</li>
+<li>Question 5: What is a secret skill that you have?</li>
+<li>Question 6: If you had one day off, what would you do?</li>
+</ul>
+
+
+  </p>
+	</div>
+
+
+
+   <div class="container">
+    <img src ="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v695batch3-sasi-19-simpleframe_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=65&usm=15&vib=3&w=800&s=4bff4dcd30f9704179708373d0a8c521" class="picRight" width=350px height=350px>
+<div class="text">
+  Name</div>
+   </div>
+   <div class="container">
+<img src ="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v695batch3-sasi-19-simpleframe_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=65&usm=15&vib=3&w=800&s=4bff4dcd30f9704179708373d0a8c521" class="picleft" width=350px height=350px>
+   <div class="text">
+  Name</div>
+<script type="text/javascript">
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+		  acc[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var panel = this.nextElementSibling;
+		    if (panel.style.maxHeight){
+		      panel.style.maxHeight = null;
+		    } else {
+		      panel.style.maxHeight = panel.scrollHeight + "px";
+		    } 
+		  });
+		}
+</script>
+  </body>
+</html>

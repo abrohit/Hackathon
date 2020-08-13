@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Make Quiz</title>
+    
+  </head>
+  <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+  <style>
+   
+   body{
+      background-image: url('https://user-images.githubusercontent.com/42160652/89743160-43626100-da6e-11ea-8888-80aae91702a2.jpeg');
+    }
+
+    p{
+      font-family: 'Fredericka the Great', cursive;
+      color: white;
+      text-align: center;
+      margin-top: 11%;
+    }
+
+    h1{
+      font-family: 'Fredericka the Great', cursive;
+      color: white;
+      text-align: center;
+      font-size: 100px;
+    }
+    label{
+      font-family: 'Fredericka the Great', cursive;
+       margin-left: 12%;
+
+      color: white;
+    }
+.logIn{
+  position: fixed; /* or absolute */
+  top: 40%;
+  left: 40%;
+  
+}
+
+h3{
+      font-family: 'Fredericka the Great', cursive;
+      color: white;
+      text-align: center;
+      font-size: 30px;
+    }
+
+button{
+  background-color: #4CAF50; /* Green */
+  font-family: 'Fredericka the Great', cursive;
+  border: none;
+  color: white;
+  padding: 4px 116.5px;
+  margin-left: 20%;
+ 
+}
+
+::-webkit-input-placeholder { /* Edge */
+  font-size: 9px;
+  font-family: 'Fredericka the Great', cursive;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-size: 9px;
+  font-family: 'Fredericka the Great', cursive;
+
+}
+
+::placeholder {
+  
+  font-family: 'Fredericka the Great', cursive;
+}
+
+
+select{
+  font-family: 'Fredericka the Great', cursive;
+}
+
+
+
+
+
+    
+
+    </style>
+
+
+ 
+  <body>
+
+    <h1> Make Quiz </h1>
+  
+
+    <div class="block">
+   <label>Enter the Session ID: &nbsp; </label>  <input type="text" class ="input-box" id="id" placeholder="Session ID" name="pword" size="44"/>
+   <label>Enter the Lecture Number: &nbsp; </label>  <input type="text" class ="input-box"  id="lectureNumber "placeholder="Lecture Number" name="pword" size="44"/>
+  
+</div>
+<br>
+<br>
+<br>
+<div class="block">
+  <label>Question Number: &nbsp; </label>  <input type="text" class ="input-box" placeholder="Question Number Ex: 1" id="num" name="pword" size="44"/>
+  <label>   &nbsp;&nbsp;&nbsp;&nbsp; Multiple Choice or Open Ended: &nbsp; </label>    <select name="mcq" id="mcq" style="width: 280px;">
+    <option value="mc">Multiple Choice</option>
+    <option value="openEnded">Open Ended</option>
+  </select>
+</div>
+
+<br>
+<br>
+<h3> Enter Question </h3>
+
+<div class="block">
+  <label> Enter Question: &nbsp; </label>  
+  
+  <input type="text" class ="input-box" id="question" placeholder="Question" name="pword"  size= "44"/>
+</div>
+
+<br>
+<br>
+
+<div class="block">
+  <label>Type Correct Answer: &nbsp; </label>  
+
+  <input type="text" class ="input-box" id="correctAnswer"  placeholder="Correct Answer" name="pword" size= "44" />
+</div>
+
+<br>
+<br>
+
+<div class="block">
+  <label> Type Three Wrong Answers Here Seperated by a Double Space (type N/A for opend ended): &nbsp; </label>  
+  
+  <input type="text" class ="input-box" id="wrongAnswer" placeholder="Wrong Answer E.g. WrongAnswer1 WrongAnswer2 WrongAnswer3 " name="pword" size= "44" />
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+ <button type="button" onclick="myFunction()" > Done </button> 
+ <button type="button"> Next Question </button> 
+
+  
+<script src="quiz.js"></script>
+
+  </body>
+</html>
