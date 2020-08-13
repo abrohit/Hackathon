@@ -1,24 +1,30 @@
+"""
+API INSTRUCTIONS:
+The way data is collected/stored is a little weird. First off, to get and post data you need a lecture id and a question number. The lecture id is the teacher's
+username + the lecture number. So for a lecturer with username Skola to post his first lecture's second question, he would use the endpoint
+question/Skola1/2, with Skola1 being the lecture id.
+When posting data you need to specify 'q_type', or question type. This will either be 'mc' for multiple choice(including true/false) or 'frq' for free response.
+For the 'question' field you just need to write out the quesiton.
+The correct answer would be stored under 'correct', for an frq, input N/A for this field.
+For ease of storing in the database, all the wrong answers are stored in one string with each answer being seperated by a double space. To break up
+the answers after a get request you would probably need to use something like ".split('  ')". For frq's just write in N/A.
+The session_id is a classifier to determine which session the question belongs to.
+The FRQ get and post methods are very similar, but they also require the students username.
+For examples of the data needed as well as example get and post requests look at test.py.
+"""
+
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-db = SQLAlchemy(app)
-
-# API INSTRUCTIONS:
-# The way data is collected/stored is a little weird. First off, to get and post data you need a lecture id and a question number. The lecture id is the teacher's
-# username + the lecture number. So for a lecturer with username Skola to post his first lecture's second question, he would use the endpoint
-# question/Skola1/2, with Skola1 being the lecture id.
-# When posting data you need to specify 'q_type', or question type. This will either be 'mc' for multiple choice(including true/false) or 'frq' for free response.
-# For the 'question' field you just need to write out the quesiton.
-# The correct answer would be stored under 'correct', for an frq, input N/A for this field.
-# For ease of storing in the database, all the wrong answers are stored in one string with each answer being seperated by a double space. To break up
-# the answers after a get request you would probably need to use something like ".split('  ')". For frq's just write in N/A.
-# The session_id is a classifier to determine which session the question belongs to.
-# The FRQ get and post methods are very similar, but they also require the students username.
-# For examples of the data needed as well as example get and post requests look at test.py.
+if __name__ == "__main__":
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+    db = SQLAlchemy(app)
+else:
+    from flask_start import app
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz_api/database.db'
+    db = SQLAlchemy(app)
 
 class QuizModel(db.Model):
     unique_id = db.Column(db.String(50), primary_key = True)
@@ -147,6 +153,7 @@ class FRQSession(Resource):
         responses = FRQModel.query.filter_by(session_id = sessionId).all()
         return responses
 
+api = Api(app)
 api.add_resource(Question, "/question/<string:lectureId>/<int:questionNum>")
 api.add_resource(FRQ, "/frq/<string:lectureId>/<int:questionNum>/<string:studentName>")
 api.add_resource(Session, "/question/<string:sessionId>")

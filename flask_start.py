@@ -11,9 +11,8 @@ if not loaded:
 from flask import Flask
 app = Flask(__name__)
 
-import clientbot.routes
+from clientbot import *
+import quiz_api.quiz_api
 
-if __name__ is "__main__":
-    port = int(os.environ.get('PORT', 9874))
-    app.run(host="0.0.0.0", port=port)
-    # app.run(host='localhost', port=9874, debug=True)
+if __name__ == "__main__":
+    app.run(host='localhost', port=9874, debug=True)

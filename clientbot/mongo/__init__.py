@@ -11,7 +11,7 @@ import random
 
 from .models import User, Session, Doubt
 from flask_start import app
-from flask_routes.utilities import jwt_encode, jwt_auth
+from clientbot.utilities import jwt_encode, jwt_auth
 
 
 print("**Creating Mongo Routes... ")

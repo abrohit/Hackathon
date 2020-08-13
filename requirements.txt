@@ -12,3 +12,6 @@ google
 six
 gunicorn
 whitenoise
+flask_restful
+flask_sqlalchemy
+requests
