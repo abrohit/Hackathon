@@ -33,7 +33,7 @@ function myFunction(){
           console.log('${data} and status is ${status}')
        });
       }catch{
-        alert('Question already exists under ')
+        alert('Question already exists in this lecture with that number ')
       }
 
 
