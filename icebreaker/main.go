@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"sync"
+	"os"
 
 	"github.com/bmizerany/pat"
 	"go.mongodb.org/mongo-driver/bson"
@@ -38,12 +39,20 @@ type Person struct {
 
 //call a function when you exit a website
 
+func determineListenAddress() (string) {
+    port := os.Getenv("PORT")
+    if port == "" {
+        return ":3001"
+    }
+    return ":" + port
+}
+
 func main() {
 	mux := pat.New()
 	mux.Get("/questions", http.HandlerFunc(questions))
 	mux.Get("/icebreaker", http.HandlerFunc(icebreaker))
 	log.Println("Listening...")
-	err := http.ListenAndServe(":3000", mux)
+	err := http.ListenAndServe(determineListenAddress(), mux)
 	if err != nil {
 		log.Fatal(err)
 	}

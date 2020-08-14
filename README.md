@@ -36,6 +36,8 @@ Query with an app like [Insomnia](https://insomnia.rest/).
 **Icebreaker**
 ```angular2
 % cd icebreaker
+% go mod vendor
+% go build ./bin/icebreaker
 % git commit
 % git push heroku master
 ```
