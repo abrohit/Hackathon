@@ -64,9 +64,16 @@ func getUserID() string {
 }
 
 //{user_id, user_name, session_id}
+//take if they want email, ft or zoom, phone number
 func icebreaker(w http.ResponseWriter, r *http.Request) {
 	//render(w, "icebreakersite.html", nil)
-	currentUsername := getUserID()
+	keys, ok := r.URL.Query()["user_name"]
+
+	if !ok || len(keys[0]) < 1 {
+		log.Println("Url Param 'key' is missing")
+		return
+	}
+	currentUsername := keys[0]
 	c := Store{num: 0}
 	partner := c.process(currentUsername)
 	if partner != "" {
