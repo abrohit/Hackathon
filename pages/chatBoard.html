@@ -16,21 +16,86 @@
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(body));
     }
-    window.onload = function () {
-          const session_id = 714786250
-          const lobby_size = 5
 
-          sendReq("GET", "https://classroomplus.herokuapp.com/sessions/enter", {session_id: 714786250, user_id: "dragon6174", user_name: "dragonoid"})
+    window.onload = function () {
+          const session_response = {
+    "session_id": 714786250,
+    "session_name": "Dragonoid76's Session",
+    "opener": "5f2f3f1fae25af39dd3a5e0a",
+    "doubts": [
+      {
+        "question": "What is the square root of -x?",
+        "comments": [
+          {
+            "comment": "Bruh can you even do math? It's i*sqrt(x)",
+            "commenter": "5f2f3e05f0b61dadc4fc5d44",
+            "comment_id": 733793684
+          }
+        ],
+        "poster": "5f2f3f1fae25af39dd3a5e0a",
+        "doubt_id": 677132883,
+        "upvoters": [
+          "5f2f3f1fae25af39dd3a5e0a",
+          "5f2f3e05f0b61dadc4fc5d44"
+        ],
+        "downvoters": []
+      }
+    ],
+    "current_users": [
+      "5f2f3e05f0b61dadc4fc5d44",
+      "5f2f3eb8ae25af39dd3a5e09",
+      "5f2f3f1fae25af39dd3a5e0a",
+      "afa"
+    ]
+  }
+          const session_id = session_response.session_name
+          const lobby_size = session_response.current_users.length
+          const doubts = session_response.doubts
+
+          /*sendReq("GET", "https://classroomplus.herokuapp.com/sessions/enter", {session_id: 714786250, id: "dragon6174", user_name: "dragonoid"})*/
 
           document.getElementById("title").innerText = session_id;
           document.getElementById("lobby-population-label").innerText = lobby_size + ' people in the lobby';
-            var myInput = document.getElementById("id1");
-    if(myInput.addEventListener ) {
-        myInput.addEventListener('keydown',this.keyHandler,false);
-    } else if(myInput.attachEvent ) {
-        myInput.attachEvent('onkeydown',this.keyHandler); /* damn IE hack */
+
+          for (var i = 0; i < doubts.length; i++) {
+              var divy = document.createElement("div")
+              divy.classList = ["doubt"]
+              divy.innerHTML = "<p>" + "(" + doubts[i].poster + ") " + doubts[i].question + "</p>\n" +
+                "      <div class=\"reddit-box\">\n" +
+                "        <div>" + doubts[i].upvoters.length + "</div><svg width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z\" fill=\"rgba(255, 40, 40, 0.5)\"></path></svg>\n" +
+                "        &emsp;\n" +
+                "        <div>" + doubts[i].upvoters.length + "</div><svg width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z\" fill=\"rgba(40, 40, 255, 0.5)\"></path></svg>\n" +
+                "      </div>"
+              divy.onclick = bindToWindow.bind(this, doubts[i].doubt_id)
+              document.getElementById("id").appendChild(divy)
+
+              for (var j = 0; j < doubts[i].comments.length; j++) {
+                var divy = document.createElement("div")
+                divy.classList = ["comment"]
+                divy.innerHTML = "<p>" + "(" + doubts[i].comments[j].commenter + ") " + doubts[i].comments[j].comment + "</p>"
+                document.getElementById("id").appendChild(divy)
+              }
+          }
+
+          var myInput = document.getElementById("id1");
+          if(myInput.addEventListener ) {
+              myInput.addEventListener('keydown',this.keyHandler,false);
+          } else if(myInput.attachEvent ) {
+              myInput.attachEvent('onkeydown',this.keyHandler); /* damn IE hack */
+          }
     }
-    }
+
+          function bindToWindow(e) {
+            if (typeof window.to_comment === 'undefined') {
+              // <button type="button" onclick="sendDoubt()"> Send </button>
+              const btn = document.createElement("button")
+              btn.type = "button"
+              btn.onclick = sendComment
+              btn.innerHTML = " Comment "
+              document.getElementById("inputzone").appendChild(btn)
+            }
+            window.to_comment = e;
+          }
 
             function keyHandler(e) {
         var TABKEY = 9;
@@ -46,6 +111,14 @@
     window.onbeforeunload = function (e) {
 
     };
+
+    function sendDoubt() {
+      console.log("new doubt")
+    }
+
+    function sendComment() {
+      console.log("comment on doubt: " + window.to_comment)
+    }
 </script>
   <style>
    body{
@@ -168,6 +241,8 @@ select{
   width: 45vw;
   resize: none;
   margin: 0 0 2vh 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: scroll;
 }
 
     #bodyStuffs {
@@ -195,6 +270,46 @@ select{
       height: 5vh;
     }
 
+    .doubt {
+      width: 40vw;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 20px 0 5px 0;
+    }
+
+    .doubt p {
+      text-align: left;
+      font-family: "Fredericka the Great";
+      padding-left: 10px;
+      padding-top: 5px;
+      margin: 0;
+    }
+
+    .comment {
+      width: 40vw;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 20px 0 5px 5vw;
+      padding: 2px 0 10px 0;
+    }
+
+    .comment p {
+      text-align: right;
+      font-family: "Fredericka the Great";
+      padding-right: 10px;
+      padding-top: 5px;
+      margin: 0;
+    }
+
+    .reddit-box {
+      line-height: 20px; font-size: 16px; text-align:right; margin: 1px 20px;
+    }
+
+    .reddit-box > div {
+      display: inline-block;
+      margin: 0 5px 2px 0;
+      color: white;
+      font-family: "Fredericka the Great";
+    }
+
     </style>
 
 <h2 id="title">...</h2>
@@ -207,10 +322,12 @@ select{
 </div>
     <div id="inputzone">
       <div id="chatlabel"><h4>Chatroom</h4></div>
-<textarea type="text" class ="input-box2" id="id" name="pword" size="24" disabled> </textarea>
+<div class ="input-box2" id="id" name="pword" size="24">
 
-<textarea class ="input-box3" id="id" name="pword" size="24"></textarea>
-      <button type="button" > Send </button>
+  </div>
+
+<textarea class ="input-box3" id="id3" name="pword" size="24"></textarea>
+      <button type="button" onclick="sendDoubt()"> Send </button>
       </div>
     </div>
   <body>
