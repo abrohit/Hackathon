@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"sync"
 	"os"
+	"io/ioutil"
 
 	"github.com/bmizerany/pat"
 	"go.mongodb.org/mongo-driver/bson"
@@ -63,21 +64,36 @@ func getUserID() string {
 	return "testing"
 }
 
+type rbody struct {
+    User_name string
+}
+
 //{user_id, user_name, session_id}
 //take if they want email, ft or zoom, phone number
 func icebreaker(w http.ResponseWriter, r *http.Request) {
 	//render(w, "icebreakersite.html", nil)
-	keys, ok := r.URL.Query()["user_name"]
+	body, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    log.Println(string(body))
 
-	if !ok || len(keys[0]) < 1 {
-		log.Println("Url Param 'key' is missing")
-		return
-	}
-	currentUsername := keys[0]
+    var p rbody;
+
+    err = json.Unmarshal(body, &p)
+
+	currentUsername := p.User_name
+
+	w.WriteHeader(200)
+	w.Header().Set("Content-Type", "application/json")
+
 	c := Store{num: 0}
 	partner := c.process(currentUsername)
 	if partner != "" {
 		w.Write([]byte(partner))
+	} else {
+	    w.Write([]byte("No partner found!"))
 	}
 }
 
