@@ -13,6 +13,8 @@ from .models import User, Session, Doubt
 from flask_start import app
 from clientbot.utilities import jwt_encode, jwt_auth
 
+from flask_cors import CORS, cross_origin
+
 
 print("**Creating Mongo Routes... ")
 
@@ -125,6 +127,7 @@ def register():
 
 
 @app.route('/sessions')
+@cross_origin()
 def sessions():
     """ for displaying all available sessions """
     session_db = mongo.db.sessions
@@ -141,6 +144,7 @@ def sessions():
 
 
 @app.route('/sessions/new', methods=['POST'])
+@cross_origin()
 def new_session():
     """ requires auth token. """
     # current_user = current()
@@ -179,6 +183,7 @@ def new_session():
 
 
 @app.route('/sessions/get')
+@cross_origin()
 def get_session():
     # current_user = current()
     # if isinstance(current_user, tuple):
@@ -211,6 +216,7 @@ def get_session():
 
 
 @app.route('/sessions/enter')
+@cross_origin()
 def enter_session():
     """ requires auth token. """
     # current_user = current()
@@ -248,6 +254,7 @@ def enter_session():
 
 
 @app.route('/sessions/leave')
+@cross_origin()
 def leave_session():
     """ requires auth token. """
     # current_user = current()
@@ -285,6 +292,7 @@ def leave_session():
 
 
 @app.route('/sessions/delete')
+@cross_origin()
 def delete_session():
     """ requires auth token. """
     # current_user = current()
@@ -315,6 +323,7 @@ def delete_session():
 
 
 @app.route('/doubt/new', methods=['POST'])
+@cross_origin()
 def doubt_new():
     """ requires auth token """
 
@@ -366,6 +375,7 @@ def doubt_new():
 
 
 @app.route('/doubt/vote')
+@cross_origin()
 def doubt_vote():
     """ requires auth token. for displaying on screen all available doubts """
     # current_user = current()
@@ -427,6 +437,7 @@ def doubt_vote():
 
 
 @app.route('/doubt/resolve')
+@cross_origin()
 def resolve():
     """ requires auth token. should only work if called by the user who placed it (or potentially teacher) """
     # current_user = current()
@@ -465,6 +476,7 @@ def resolve():
 
 
 @app.route('/doubt/comment', methods=['POST'])
+@cross_origin()
 def comment():
     """ requires auth token. comments on the post with a possible solution (with marker for role: student/teacher) """
     # current_user = current()
@@ -510,6 +522,7 @@ def comment():
 
 
 @app.route('/doubt/comment/remove')
+@cross_origin()
 def remove_comment():
     """ requires auth token. comments on the post with a possible solution (with marker for role: student/teacher) """
     # current_user = current()

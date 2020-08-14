@@ -3,7 +3,11 @@ function saveFile(){
     console.log(file)
           // Convert the text to BLOB.
         const textToBLOB = new Blob([file], { type: 'text/plain' });
-        const sFileName = 'formData.txt';	   // The file to save the data.
+        const date = new Date();
+        const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
+        const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date)
+
+        const sFileName = `${month} ${day} ${year} Notes.txt`;	   // The file to save the data.
 
         let newLink = document.createElement("a");
         newLink.download = sFileName;

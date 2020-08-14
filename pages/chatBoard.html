@@ -4,14 +4,56 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Make Quiz</title>
-    
+
   </head>
   <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
 
+  <script type="text/javascript">
+    function sendReq (typ, url, body) {
+      var xhr = new XMLHttpRequest();
+      xhr.open(typ, url, true);
+      xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(body));
+    }
+    window.onload = function () {
+          const session_id = 714786250
+          const lobby_size = 5
+
+          sendReq("GET", "https://classroomplus.herokuapp.com/sessions/enter", {session_id: 714786250, user_id: "dragon6174", user_name: "dragonoid"})
+
+          document.getElementById("title").innerText = session_id;
+          document.getElementById("lobby-population-label").innerText = lobby_size + ' people in the lobby';
+            var myInput = document.getElementById("id1");
+    if(myInput.addEventListener ) {
+        myInput.addEventListener('keydown',this.keyHandler,false);
+    } else if(myInput.attachEvent ) {
+        myInput.attachEvent('onkeydown',this.keyHandler); /* damn IE hack */
+    }
+    }
+
+            function keyHandler(e) {
+        var TABKEY = 9;
+        if(e.keyCode == TABKEY) {
+            this.value += "    ";
+            if(e.preventDefault) {
+                e.preventDefault();
+            }
+            return false;
+        }
+    }
+
+    window.onbeforeunload = function (e) {
+
+    };
+</script>
   <style>
-   
    body{
-      background-color: #4CAF50;
+      background-color: #000000;
+      background-image: url('https://user-images.githubusercontent.com/42160652/89743160-43626100-da6e-11ea-8888-80aae91702a2.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
     }
 
     p{
@@ -37,7 +79,7 @@
   position: fixed; /* or absolute */
   top: 40%;
   left: 40%;
-  
+
 }
 
 h3{
@@ -52,11 +94,15 @@ h3{
   font-family: 'Fredericka the Great', cursive;
   border: none;
   color: white;
-  padding: 4px 116.5px;
-  margin-left: 18.3%;
-  margin-top: -2%;
- 
+  width: 20vw;
+  padding: 10px 0;
+   margin-left: 12.5vw;
+   margin-top: 2vh;
 }
+
+ button:focus {
+   outline: none;
+ }
 
 ::-webkit-input-placeholder { /* Edge */
   font-size: 9px;
@@ -70,63 +116,109 @@ h3{
 }
 
 ::placeholder {
-  
+
   font-family: 'Fredericka the Great', cursive;
 }
+    h2 {
+      font-family: 'Fredericka the Great';
+      text-align: center;
+      color: #ffffff;
+      font-size: 40px;
+      margin: 0;
+    }
 
+    h4 {
+      font-family: 'Fredericka the Great';
+      text-align: center;
+      color: #ffffff;
+      font-size: 20px;
+      margin: 0;
+    }
 
 select{
   font-family: 'Fredericka the Great', cursive;
 }
 
 .input-box{
-  height: 900px;
-  width: 850px;
-  background-image: url('https://user-images.githubusercontent.com/42160652/89743160-43626100-da6e-11ea-8888-80aae91702a2.jpeg');
+  height: 60vh;
+  width: 45vw;
+  background-color: rgba(255, 255, 255, 0.2);
   font-family: 'Fredericka the Great', cursive;
   color: white;
   resize: none;
-  padding-top: -2px;
-  margin-right: 1%;
+}
+
+.input-box:focus {
+  outline: none;
 }
 
 .input-box3{
 
   background-image: gray;
   font-family: 'Fredericka the Great', cursive;
-  margin-left: 70%;
-  width: 520px;
-  height: 55px;
+  width: 45vw;
+  height: 5vh;
   resize: none;
 }
 
 
 .input-box2{
   margin-left: 2%;
-  width: 850px;
-  height: 900px;
+  height: 45vh;
+  width: 45vw;
   resize: none;
+  margin: 0 0 2vh 0;
 }
 
+    #bodyStuffs {
+      display: flex;
+    }
+
+    #inputzone {
+      margin-left: 2%;
+      height: 50vh;
+      width: 45vw;
+      margin: 20px 2vw 20px 2vw;
+    }
+
+    #notezone {
+      height: 60vh;
+  width: 45vw;
+  margin: 20px 2vw 20px 2vw;
+    }
+
+    textarea {
+      padding-top: 10px;
+    }
+
+    #chatlabel {
+      height: 5vh;
+    }
 
     </style>
-<textarea type="text" class ="input-box" id="id1" placeholder="Response..." name="pword" size="44"> </textarea>
 
-<textarea type="text" class ="input-box2" id="id" placeholder="Response..." name="pword" size="24" disabled> </textarea>
- 
-<textarea class ="input-box3" id="id" placeholder="Response..." name="pword" size="24">
-  </textarea>
+<h2 id="title">...</h2>
+  <h4 id="lobby-population-label">...</h4>
 
-<div>
-  <button type="button" onclick="saveFile()"> Save </button> 
-  <button type="button" > Send </button>
+  <div id="bodyStuffs">
+    <div id="notezone">
+<textarea type="text" class ="input-box" id="id1" name="pword" size="44"> </textarea>
+      <button type="button" onclick="saveFile()"> Save Notes </button>
 </div>
+    <div id="inputzone">
+      <div id="chatlabel"><h4>Chatroom</h4></div>
+<textarea type="text" class ="input-box2" id="id" name="pword" size="24" disabled> </textarea>
+
+<textarea class ="input-box3" id="id" name="pword" size="24"></textarea>
+      <button type="button" > Send </button>
+      </div>
+    </div>
   <body>
-  
 
-   
 
-  
+
+
+
 <script src="chalkBoard.js"></script>
 
   </body>

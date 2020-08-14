@@ -1,4 +1,5 @@
 from dotenv import load_dotenv, find_dotenv
+from flask_cors import CORS, cross_origin
 import os
 
 # load .env into os.getenv function
@@ -10,6 +11,8 @@ if not loaded:
 # now start flask
 from flask import Flask
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 from clientbot import *
 import quiz_api.quiz_api
