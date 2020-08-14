@@ -1,6 +1,6 @@
 <p align="center">
   <img src="/docs/public/hackthislogo.jpg" width="100px"></img>
-  <img src="/docs/public/classroompluslogo.png" width="100px"></img>
+  <img src="/docs/public/logoblack.png" width="100px"></img>
 
   <h3 align="center">
      Codebase for HackThis 2020 Submission: Classroom Plus
@@ -242,5 +242,12 @@ Query with an app like [Insomnia](https://insomnia.rest/).
 * Returns None
 
 ---
+# Website Functionality
+
+The website is built in django. You can access it [here](https://github.com/abrohit/Hackathon/tree/master/ClassRoom_Plus_Website)
+
+The website will run when you run the manage.py using the command "python manage.py runserver" in the command prompt when you're in the directory of the file.
+
+the website will be functional at [localhost:8000](localhost:8000)
 
 ## Authors
