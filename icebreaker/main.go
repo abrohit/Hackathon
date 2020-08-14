@@ -4,16 +4,24 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
+	"sync"
 
 	"github.com/bmizerany/pat"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	// "github.com/julienschmidt/httprouter"
 )
+
+type Store struct {
+	num int
+	p1  string
+	p2  string
+	mux sync.Mutex
+}
 
 type Questions struct {
 	Index    string
@@ -28,9 +36,7 @@ type Person struct {
 	Match    string             `bson:"match" json: "match"`
 }
 
-func (p *Person) String() {
-	log.Printf("Person Name: %s/nPerson Match: %s", p.Username, p.Match)
-}
+//call a function when you exit a website
 
 func main() {
 	mux := pat.New()
@@ -43,8 +49,53 @@ func main() {
 	}
 }
 
-//connect to mongodb, find people
+//put the person's username in this from frontend
+func getUserID() string {
+	return "testing"
+}
+
+//{user_id, user_name, session_id}
 func icebreaker(w http.ResponseWriter, r *http.Request) {
+	//render(w, "icebreakersite.html", nil)
+	currentUsername := getUserID()
+	c := Store{num: 0}
+	partner := c.process(currentUsername)
+	if partner != "" {
+		w.Write([]byte(partner))
+	}
+	questions(w, r)
+}
+
+//goroutine to process through only two people at a time, set parteners
+func (c *Store) process(username string) string {
+	var partner = ""
+	if c.num == 2 {
+		fmt.Println("equal to two")
+		c.mux.Lock()
+		partner = c.connect(username, true)
+		c.p1 = ""
+		c.p2 = ""
+		c.mux.Unlock()
+	}
+	if c.num < 2 {
+		fmt.Println("less than 2")
+		c.mux.Lock()
+		result := c.connect(username, false)
+		if result == "" {
+			if c.p1 == "" {
+				c.p1 = username
+			} else {
+				c.p2 = username
+			}
+		}
+		c.mux.Unlock()
+		fmt.Println("p1 and p2", c.p1, c.p2)
+	}
+	return partner
+}
+
+func (c *Store) connect(username string, toSwitch bool) string {
+	fmt.Println("connect")
 	ctx := context.Background()
 	url := "mongodb+srv://dbUser:hackillinois2020@cluster0.8uvh8.mongodb.net/test?retryWrites=true&w=majority"
 	clientOptions := options.Client().ApplyURI(url)
@@ -58,45 +109,46 @@ func icebreaker(w http.ResponseWriter, r *http.Request) {
 	}
 	defer client.Disconnect(ctx)
 	collection := client.Database("test").Collection("users")
-	filter := bson.D{{"match", "no"}}
+	//if not to Switch
+	if !toSwitch {
+		filter := bson.D{{"username", username}}
+		var result Person
+		s := collection.FindOne(ctx, filter)
+		decodeError := s.Decode(&result)
 
-	var result Person
-	s := collection.FindOne(ctx, filter)
-	//JSONData := &bson.D{}
-	decodeError := s.Decode(&result)
-
-	if decodeError != nil {
-		log.Println("Decode error: ", decodeError)
+		if decodeError != nil {
+			log.Println("Decode error: ", decodeError)
+		}
+		return result.Match
+	} else {
+		//don't know if this is necessary
+		f1 := bson.D{{"username", c.p1}}
+		f2 := bson.D{{"username", c.p2}}
+		var p1 Person
+		var p2 Person
+		s := collection.FindOne(ctx, f1)
+		s2 := collection.FindOne(ctx, f2)
+		_, err = collection.UpdateOne(
+			ctx,
+			s.Decode(&p1),
+			bson.D{
+				{"$set", bson.D{{"match", p2}}},
+			},
+		)
+		_, err = collection.UpdateOne(
+			ctx,
+			s2.Decode(&p2),
+			bson.D{
+				{"$set", bson.D{{"match", p1}}},
+			},
+		)
+		if c.p1 == username {
+			return c.p2
+		} else {
+			return c.p1
+		}
 	}
-
-	fmt.Println("Path: ", result.Username)
-	w.Write([]byte("Your partner is:"))
-	w.Write([]byte(result.Username))
-
-	// // if filtered == nil {
-	// // 	w.Write([]byte("No partner available at this time"))
-	// // 	w.Write([]byte("\n\n"))
-	// // }
-	// partner := filtered //[0]
-	// fmt.Println(partner.username)
-
-	//change to yes for partner and for user
-	// _, err = collection.UpdateOne(
-	// 	ctx,
-	// 	partner,
-	// 	bson.D{
-	// 		{"$set", bson.D{{"match", "no"}}},
-	// 	},
-	// )
-	//cookie and concurrency
-
-	//when you exit icebreaker set everything to empty
-	questions(w, r)
 }
-
-//one func to check connection
-//one to find people
-//one to match
 
 //writes all questions
 func questions(w http.ResponseWriter, r *http.Request) {
@@ -131,4 +183,17 @@ func questions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(data)
+}
+
+func render(w http.ResponseWriter, filename string, data interface{}) {
+	tmpl, err := template.ParseFiles(filename)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
+	}
+
+	if err := tmpl.Execute(w, data); err != nil {
+		log.Println(err)
+		http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
+	}
 }
