@@ -106,6 +106,10 @@ div  > input[type=text] {
     border: none;
 }
 
+textarea{
+  resize: none;
+}
+
     </style>
 
 
@@ -127,12 +131,16 @@ div  > input[type=text] {
 <div>
   <label>Response: </label>
   <br>
-  <textarea type="text" class ="input-box" id="id" placeholder="Response..." name="pword" size="44"> </textarea>
+  <textarea type="text" class ="input-box" id="id1" placeholder="Response..." name="pword" size="44"> </textarea>
   </div>
     <br>
     <br>
     <br>
-    <label>Enter the Session ID: &nbsp; </label>  <input type="text" class ="input-box" id="id" placeholder="Session ID" name="pword" size="44"/>
+
+    <label>Enter the Session ID: &nbsp; </label>  <input type="text" class ="input-box" id="id2" placeholder="Session ID" name="pword" size="44"/>
+    <label>Enter Your Username: &nbsp; </label>  <input type="text" class ="input-box" id="id3" placeholder="Username" name="pword" size="44"/>
+
+
 <br>
 <br>
 <div>
@@ -147,12 +155,12 @@ div  > input[type=text] {
 <br>
 
 <div class="three">
-  <button type="button"> Previous </button> 
- <button type="button" > Submit Answer </button> 
+  <button type="button" > Previous </button> 
+ <button type="button" onclick="submitResponse()" > Submit Answer </button> 
  <button type="button"> Next Question </button> 
 </div>
 
-<script src=""></script>
+<script src="script.js"></script>
 
   </body>
 </html>
