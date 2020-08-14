@@ -72,10 +72,9 @@ func icebreaker(w http.ResponseWriter, r *http.Request) {
 	if partner != "" {
 		w.Write([]byte(partner))
 	}
-	questions(w, r)
 }
 
-//goroutine to process through only two people at a time, set parteners
+//goroutine to process through only two people at a time, set partners
 func (c *Store) process(username string) string {
 	var partner = ""
 	if c.num == 2 {
