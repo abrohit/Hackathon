@@ -161,10 +161,11 @@ def new_session():
 
     session_db = mongo.db.sessions
 
-    new_id = int(random.random() * 1000000000)
-    while session_db.find_one({"session_id": new_id}) is not None:
-        # very very unlikely to wind up here but just to be sure
-        new_id = int(random.random() * 1000000000)
+    new_id = content["session_id"]
+    # new_id = int(random.random() * 1000000000)
+    # while session_db.find_one({"session_id": new_id}) is not None:
+    #     # very very unlikely to wind up here but just to be sure
+    #     new_id = int(random.random() * 1000000000)
 
     if content is not None and "session_name" in content:
         session_name = content["session_name"]
