@@ -250,4 +250,6 @@ The website will run when you run the manage.py using the command "python manage
 
 the website will be functional at [localhost:8000](localhost:8000)
 
+If you need help starting it, feel free to contact me or visit [Django](https://www.djangoproject.com/start/)
+
 ## Authors
