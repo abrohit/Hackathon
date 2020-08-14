@@ -62,9 +62,11 @@
               divy.classList = ["doubt"]
               divy.innerHTML = "<p>" + "(" + doubts[i].poster + ") " + doubts[i].question + "</p>\n" +
                 "      <div class=\"reddit-box\">\n" +
-                "        <div>" + doubts[i].upvoters.length + "</div><svg width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z\" fill=\"rgba(255, 40, 40, 0.5)\"></path></svg>\n" +
-                "        &emsp;\n" +
-                "        <div>" + doubts[i].upvoters.length + "</div><svg width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z\" fill=\"rgba(40, 40, 255, 0.5)\"></path></svg>\n" +
+                "        <div>" + doubts[i].upvoters.length + "</div><svg onclick=\"upvote('" + doubts[i].doubt_id +"')\" width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z\" fill=\"rgba(255, 40, 40, 0.5)\"></path></svg>\n" +
+                "        &nbsp;&nbsp;&nbsp;" +
+                      "<svg onclick=\"neutralize('" + doubts[i].doubt_id +"')\" width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5H5.82l.78-3.78L5.38 0 0 5.38V14h9.24L12 7.54zm2.76 5L12 16.46V19h6.18l-.78 3.78L18.62 24 24 18.62V10z\"></path></svg>" +
+                      "&emsp;" +
+                "        <div>" + doubts[i].downvoters.length + "</div><svg onclick=\"downvote('" + doubts[i].doubt_id +"')\" width=\"20px\" class=\"MuiSvgIcon-root jss79\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z\" fill=\"rgba(40, 40, 255, 0.5)\"></path></svg>\n" +
                 "      </div>"
               divy.onclick = bindToWindow.bind(this, doubts[i].doubt_id)
               document.getElementById("id").appendChild(divy)
@@ -113,11 +115,25 @@
     };
 
     function sendDoubt() {
-      console.log("new doubt")
+      const txt = document.getElementById("id3").value
+      console.log("new doubt: " + txt)
     }
 
     function sendComment() {
-      console.log("comment on doubt: " + window.to_comment)
+      const txt = document.getElementById("id3").value
+      console.log("comment on doubt: " + window.to_comment + " of: " + txt)
+    }
+    
+    function upvote(doubt_id) {
+      console.log("upvoting: " + doubt_id)
+    }
+    
+    function downvote(doubt_id) {
+      console.log("downvoting: " + doubt_id)
+    }
+
+    function neutralize(doubt_id) {
+      console.log("neutralizing: " + doubt_id)
     }
 </script>
   <style>
