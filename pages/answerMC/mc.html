@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Answer Open Ended Question</title>
+    <title>Answer Multiple Choice Question</title>
     
   </head>
   <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
@@ -92,19 +92,7 @@ div > button{
   padding: 4px 116.5px;
 }
 
-div > .input-box{
-    margin-left: 12%;
-    width: 1000px;
-    height: 200px;
     
-}
-
-div  > input[type=text] {
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border: none;
-}
 
     </style>
 
@@ -112,7 +100,7 @@ div  > input[type=text] {
  
   <body>
 
-    <h1> Type an Answer </h1>
+    <h1> Select an Answer </h1>
 
    <h3>Question Number</h3>
    <br>
@@ -125,14 +113,18 @@ div  > input[type=text] {
 
 
 <div>
-  <label>Response: </label>
-  <br>
-  <textarea type="text" class ="input-box" id="id" placeholder="Response..." name="pword" size="44"> </textarea>
+    <button type="button" class="b1"> A1 </button> 
+    <button type="button" class="b1"> A2 </button> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <button type="button" > A3 </button> 
+  <button type="button" > A4 </button> 
   </div>
     <br>
     <br>
     <br>
-    <label>Enter the Session ID: &nbsp; </label>  <input type="text" class ="input-box" id="id" placeholder="Session ID" name="pword" size="44"/>
 <br>
 <br>
 <div>
@@ -148,7 +140,7 @@ div  > input[type=text] {
 
 <div class="three">
   <button type="button"> Previous </button> 
- <button type="button" > Submit Answer </button> 
+ <button type="button" > Check Answer </button> 
  <button type="button"> Next Question </button> 
 </div>
 

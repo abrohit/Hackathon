@@ -3,22 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Student's Responses </title>
+    <title>Make Quiz</title>
     
   </head>
   <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
 
   <style>
    
-   body{
+    body{
       background-image: url('https://user-images.githubusercontent.com/42160652/89743160-43626100-da6e-11ea-8888-80aae91702a2.jpeg');
     }
 
     p{
       font-family: 'Fredericka the Great', cursive;
-      color: white;
-      text-align: center;
-      margin-top: 11%;
     }
 
     h1{
@@ -29,32 +26,43 @@
     }
     label{
       font-family: 'Fredericka the Great', cursive;
-       margin-left: 12%;
-
+      font-size: 14px;
       color: white;
     }
 .logIn{
-  position: fixed; /* or absolute */
-  top: 40%;
-  left: 40%;
+  
+  position: absolute;
+  margin-left: 60%;
+  margin-top: -27%;
+
   
 }
 
-h3{
-      font-family: 'Fredericka the Great', cursive;
-      color: white;
-      text-align: center;
-      font-size: 30px;
-    }
+p{
+    text-align: center;
+    font-family: 'Fredericka the Great', cursive;
+    color: white;
+  font-size: 15px;
+}
+
+.logo{
+  margin-left: 20%;
+  margin-top: 0%;
+
+}
 
 button{
   background-color: #4CAF50; /* Green */
   font-family: 'Fredericka the Great', cursive;
+  font-size: 15px;
   border: none;
   color: white;
-  padding: 4px 116.5px;
-  margin-left: 20%;
- 
+  padding:  4px 132px;
+  text-align: center;
+}
+
+div > .iconImage{
+  position: relative;
 }
 
 ::-webkit-input-placeholder { /* Edge */
@@ -69,56 +77,34 @@ button{
 }
 
 ::placeholder {
-  
+  font-size: 9px;
   font-family: 'Fredericka the Great', cursive;
 }
-
-
-select{
-  font-family: 'Fredericka the Great', cursive;
-}
-
-
-
-
-
     
 
     </style>
-
-
  
   <body>
+    <script src="script.js">
+    </script>
+    <h1> Make Quiz </h1>
 
-    <h1> Student's Responses </h1>
+
+<p>Click here to make a quiz<p>
+
+
+
+
+ <br>
+ <br>
+  <button type="button" > Make Quiz </button> 
+
+ 
+
+
   
 
-<div class="block">
-  <label> Question: &nbsp; </label>  
   
-  <label> Student Name: &nbsp; </label>  
 </div>
-
-<br>
-<br>
-
-<div class="block">
-  <label> Response: &nbsp; </label>  
-
-</div>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
- <button type="button" > Prev </button> 
- <button type="button"> Next </button> 
-
-  
-<script src="quiz.js"></script>
-
   </body>
 </html>

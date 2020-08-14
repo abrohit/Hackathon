@@ -10,7 +10,7 @@ function myFunction(){
         console.log(question[x].value +" "+ x)
         if(question[x].value.length == 0){
         status = false
-        alert('One of the Boxes is Empty')
+        alert('One or many boxes are empty')
         break;
         }
      }
