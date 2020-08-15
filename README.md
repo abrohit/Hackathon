@@ -242,15 +242,31 @@ Query with an app like [Insomnia](https://insomnia.rest/).
 * Returns None
 
 ---
-# Website Functionality
+<h1 align="center">
+     The Website!
+  </h1>
 
-The website is built in django. You can access it [here](https://github.com/abrohit/Hackathon/tree/master/ClassRoom_Plus_Website)
+## Function
+It lets teachers and students have another platform to make classes more engaging and interactive. This is done through integrating a login/signup system and letting teachers create a session for students to join!
 
-The website will run when you run the manage.py using the command "python manage.py runserver" in the command prompt when you're in the directory of the file.
+## Features
+* It has a quiz function integrated that lets teachers create a quiz and students answer it. The quiz function also lets user have a free response category. This will allow the students to type the answers and let the teachers evaluate them at the end of the session! This was created to address the issue of classes not being engaging enough online.
 
-the website will be functional at [localhost:8000](localhost:8000)
+* A Chatbox Feature also has been integrated in it! The chatbox lets users ask doubts/questions and lets other students answer them. The questions also has an upvote/downvote feature that lets teachers see which is the most asked doubt/question. This makes the class more interactive and provides another tool to help the teacher teach better!
 
-If you need help starting it, feel free to contact me or visit [Django](https://www.djangoproject.com/start/)
+* A notes feature! It lets students write notes and save them at the end of an session!
+
+* On a side note, the website is also equipped with a signup system that verifies the user by email!
+
+## Help
+
+* The website is built in django. You can access it [here](https://github.com/abrohit/Hackathon/tree/master/ClassRoom_Plus_Website)
+
+* The website will run when you run the manage.py using the command "python manage.py runserver" in the command prompt when you're in the directory of the file.
+
+* The website will be functional at [localhost:8000](localhost:8000)
+
+* If you need help starting it, visit [Django's official website!](https://www.djangoproject.com/start/)
 
 ## Authors
 Fayed Raza, Rachael wei, Akaash Kolachina, Ricky Zhao, Nakul Iyer, Aryaman Singhal, and Rohit Manjunath
