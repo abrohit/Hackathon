@@ -260,7 +260,7 @@ It lets teachers and students have another platform to make classes more engagin
 
 ## Help
 
-* The website is built in django. You can access it [here](https://github.com/abrohit/Hackathon/tree/master/ClassRoom_Plus_Website)
+* The website is built in django. You can access it [here](https://github.com/abrohit/Hackathon/tree/master/ClassroomPlus2)
 
 * The website will run when you run the manage.py using the command "python manage.py runserver" in the command prompt when you're in the directory of the file.
 
